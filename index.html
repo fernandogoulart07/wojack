@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comic Layout Blueprint</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <div class="book-wrapper">
+        <div class="book">
+            
+            <!-- PAPER 0: Static Left Base (Spread 1 Left) -->
+            <div class="paper flipped" id="p0" style="z-index: 0;">
+                <div class="face front"></div>
+                <div class="face back">
+                    <div class="custom-texture"></div>
+                    <div class="page-content left-page">
+                        <div class="grid s1-left">
+                            <div class="panel">
+                                <img src="https://cdn.phototourl.com/free/2026-04-07-b50427c6-18dc-4f51-996a-5afaf8629132.png" style="width: 100%; height: 100%; object-fit: cover;" alt="Comic panel 1">
+                            </div>
+                            <div class="panel"><span class="ratio-label">16:9</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAPER 1: Spread 1 Right / Spread 2 Left -->
+            <div class="paper" id="p1" style="z-index: 5;">
+                <div class="face front">
+                    <div class="custom-texture"></div>
+                    <div class="page-content right-page">
+                        <div class="grid s1-right">
+                            <div class="panel"><span class="ratio-label">1:1</span></div>
+                            <div class="panel"><span class="ratio-label">1:1</span></div>
+                            <div class="panel"><span class="ratio-label">16:9</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="face back">
+                    <div class="custom-texture"></div>
+                    <div class="page-content left-page">
+                        <div class="grid s2-left">
+                            <div class="panel"><span class="ratio-label">16:9</span></div>
+                            <div class="panel"><span class="ratio-label">3:4</span></div>
+                            <div class="panel"><span class="ratio-label">3:4</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAPER 2: Spread 2 Right / Spread 3 Left -->
+            <div class="paper" id="p2" style="z-index: 4;">
+                <div class="face front">
+                    <div class="custom-texture"></div>
+                    <div class="page-content right-page">
+                        <div class="grid s2-right">
+                            <div class="panel"><span class="ratio-label">16:9</span></div>
+                            <div class="panel"><span class="ratio-label">16:9</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="face back">
+                    <div class="custom-texture"></div>
+                    <div class="page-content left-page">
+                        <div class="grid s3-left">
+                            <div class="panel"><span class="ratio-label">16:9</span></div>
+                            <div class="panel"><span class="ratio-label">4:5</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAPER 3: Spread 3 Right / Spread 4 Left -->
+            <div class="paper" id="p3" style="z-index: 3;">
+                <div class="face front">
+                    <div class="custom-texture"></div>
+                    <div class="page-content right-page">
+                        <div class="grid s3-right">
+                            <div class="panel"><span class="ratio-label">4:5</span></div>
+                            <div class="panel"><span class="ratio-label">16:9</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="face back">
+                    <div class="custom-texture"></div>
+                    <div class="page-content left-page">
+                        <div class="grid s4-left">
+                            <div class="panel"><span class="ratio-label">3:2</span></div>
+                            <div class="panel"><span class="ratio-label">3:2</span></div>
+                            <div class="panel"><span class="ratio-label">3:2</span></div>
+                            <div class="panel"><span class="ratio-label">3:2</span></div>
+                            <div class="panel"><span class="ratio-label">3:2</span></div>
+                            <div class="panel"><span class="ratio-label">3:2</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAPER 4: Spread 4 Right / Spread 5 Left -->
+            <div class="paper" id="p4" style="z-index: 2;">
+                <div class="face front">
+                    <div class="custom-texture"></div>
+                    <div class="page-content right-page">
+                        <div class="grid s4-right">
+                            <div class="panel"><span class="ratio-label">16:9</span></div>
+                            <div class="panel"><span class="ratio-label">21:9</span></div>
+                            <div class="panel"><span class="ratio-label">16:9</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="face back">
+                    <div class="custom-texture"></div>
+                    <div class="page-content left-page">
+                        <div class="grid s5-left">
+                            <div class="panel"><span class="ratio-label">2:3</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAPER 5: Spread 5 Right / Spread 6 Left -->
+            <div class="paper" id="p5" style="z-index: 1;">
+                <div class="face front">
+                    <div class="custom-texture"></div>
+                    <div class="page-content right-page">
+                        <div class="grid s5-right">
+                            <div class="panel"><span class="ratio-label">4:5</span></div>
+                            <div class="panel"><span class="ratio-label">4:5</span></div>
+                            <div class="panel"><span class="ratio-label">4:5</span></div>
+                            <div class="panel"><span class="ratio-label">4:5</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="face back">
+                    <div class="custom-texture"></div>
+                    <div class="page-content left-page">
+                        <div class="grid s6-left">
+                            <div class="panel"><span class="ratio-label">16:9</span></div>
+                            <div class="panel"><span class="ratio-label">4:5</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAPER 6: Static Right Base (Spread 6 Right - FINAL) -->
+            <div class="paper" id="p6" style="z-index: 0;">
+                <div class="face front">
+                    <div class="custom-texture"></div>
+                    <div class="page-content right-page s6-right">
+                        <h2 class="final-text">Next chapter when the token reaches 50k</h2>
+                        <a href="https://pump.fun" target="_blank" rel="noopener noreferrer" class="buy-btn">Buy Token</a>
+                    </div>
+                </div>
+                <div class="face back"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="controls">
+        <button id="prev-btn" class="nav-btn">Back</button>
+        <button id="next-btn" class="nav-btn">Next Page</button>
+    </div>
+
+    <script src="/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+
+:root {
+    --paper-bg: #f8f9fa; /* Clean, neutral base ready for texture */
+    --panel-bg: #e9ecef; /* Placeholder color for images */
+    --text-color: #212529;
+    --gutter: 16px; /* Natural spacing between panels */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #1a1a1a; /* Dark background to highlight the open book */
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    overflow: hidden;
+    color: var(--text-color);
+}
+
+/* 3D Book Container */
+.book-wrapper {
+    perspective: 2500px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.book {
+    width: 90vw;
+    max-width: 1200px;
+    height: 80vh;
+    max-height: 800px;
+    position: relative;
+    transform-style: preserve-3d;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+/* Individual Paper Sheets */
+.paper {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    top: 0;
+    right: 0; /* Anchored to the right half */
+    transform-origin: left center;
+    transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
+    transform-style: preserve-3d;
+}
+
+.paper.flipped {
+    transform: rotateY(-180deg);
+}
+
+/* Front and Back of each paper */
+.face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    background-color: var(--paper-bg);
+    overflow: hidden;
+}
+
+.face.front {
+    transform: rotateY(0deg);
+}
+
+.face.back {
+    transform: rotateY(180deg);
+}
+
+/* Spine (Miolo) Shadows - Crucial for the book illusion */
+.face.front::before {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0; left: 0; width: 40px;
+    background: linear-gradient(to right, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0) 100%);
+    z-index: 10;
+    pointer-events: none;
+}
+
+.face.back::before {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0; right: 0; width: 40px;
+    background: linear-gradient(to left, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0) 100%);
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* Placeholder for the user's future texture */
+.custom-texture {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 20;
+    mix-blend-mode: multiply;
+    background-image: url('https://www.transparenttextures.com/patterns/old-paper.png');
+    opacity: 0.7;
+}
+
+/* Page Content Area */
+.page-content {
+    position: absolute;
+    inset: 0;
+    padding: 40px; /* Generous margins */
+    display: flex;
+    flex-direction: column;
+    z-index: 5;
+}
+
+.left-page {
+    padding-right: 20px; /* Closer to spine */
+}
+
+.right-page {
+    padding-left: 20px; /* Closer to spine */
+}
+
+/* Comic Panels (Image Placeholders) */
+.panel {
+    background-color: var(--panel-bg);
+    border-radius: 2px; /* Clean, minimal corners */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    /* No borders, relying on background color and gutters */
+}
+
+/* Technical proportion labels */
+.ratio-label {
+    font-family: 'Inter', monospace;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #adb5bd;
+    letter-spacing: 1px;
+    user-select: none;
+}
+
+/* Grid Layouts for Spreads */
+.grid {
+    display: grid;
+    gap: var(--gutter);
+    height: 100%;
+}
+
+/* Spread 1 */
+.s1-left { grid-template-columns: 1fr; grid-template-rows: 1.5fr 1fr; }
+.s1-right { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1.5fr; }
+.s1-right .panel:nth-child(3) { grid-column: 1 / -1; }
+
+/* Spread 2 */
+.s2-left { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 2fr; }
+.s2-left .panel:nth-child(1) { grid-column: 1 / -1; }
+.s2-right { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; }
+
+/* Spread 3 */
+.s3-left { grid-template-columns: 1fr; grid-template-rows: 1fr 1.5fr; }
+.s3-right { grid-template-columns: 1fr; grid-template-rows: 1.5fr 1fr; }
+
+/* Spread 4 */
+.s4-left { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(3, 1fr); }
+.s4-right { grid-template-columns: 1fr; grid-template-rows: 1.5fr 1fr 1.5fr; }
+
+/* Spread 5 */
+.s5-left { grid-template-columns: 1fr; grid-template-rows: 1fr; }
+.s5-right { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+
+/* Spread 6 (Final) */
+.s6-left { grid-template-columns: 1fr; grid-template-rows: 1fr 1.5fr; }
+.s6-right { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    text-align: center;
+    padding: 40px;
+}
+
+/* Final Page Content */
+.final-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    line-height: 1.2;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+}
+
+.buy-btn {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #fff;
+    background-color: var(--text-color);
+    padding: 16px 48px;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.buy-btn:hover {
+    background-color: #495057;
+    transform: translateY(-2px);
+}
+
+/* Navigation Controls */
+.controls {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1rem;
+    z-index: 100;
+}
+
+.nav-btn {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #fff;
+    background-color: transparent;
+    padding: 10px 24px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+    letter-spacing: 1px;
+}
+
+.nav-btn:hover {
+    background-color: rgba(255,255,255,0.1);
+    border-color: #fff;
+}
